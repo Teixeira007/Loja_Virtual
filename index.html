@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="every">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="imagens/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="imagens/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Loja</title>
+</head>
+<body>
+    <div id="container" class="container">
+        <header>
+            <div class="first-menu">    
+                <div class="logo">
+                    <a href="#">
+                        <img src="imagens/favicon-32x32.png" alt="logo">
+                    </a>
+                </div>
+                <nav class="menu">
+                    <ul>
+                        <li class="item-menu"><a href="" class="link-menu">Início</a></li>
+                        <li onclick="teste()" class="item-menu"><a href="#" class="link-menu">Avon</a></li>
+                        <li class="item-menu"><a href="" class="link-menu">Natura</a></li>
+                        <li class="item-menu"><a href="" class="link-menu">Boticário</a></li>
+                        <li class="item-menu"><a href="" class="link-menu">Catálogos</a></li>
+                        <li class="item-menu"><a href="" class="link-menu">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="second-menu">
+                <div class="search">
+                    <input id="search-input"  placeholder="Buscar" type="text">
+                    <a class="btn-search" href="">
+                        <i id="search-icon" class="fa fa-search"></i> 
+                    </a>
+                </div>
+                <span id="span-search">Buscar no site</span>
+                <div class="cart">
+                    <div id="signal-quantity" class="signal-quantity"></div>                    
+                    <a class="btn-cart" id="btn-cart" href="#">
+                        <i class="fa fa-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class="opacity"></div>
+
+        <p class="title" style="overflow: hidden;"></p>
+        <h2 class="title">Produtos Natura de pronta entrega</h2>
+        <section class="products-natura" id="products"></section>
+        <aside class="aside-cart" id="aside-cart">
+            <h2 class="title-cart">Meu Carrinho</h2>
+            <p class="my-products">Meus Produtos</p>
+            <a id="icon-close" href="#">
+                <i class="fa fa-times"></i>
+            </a>
+            <section class="my-cart" id='cart'>
+                <h2 class="cart-clear">Você não tem nenhum produto no carrinho</h2>
+            </section>
+        </aside>
+        <footer></footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
