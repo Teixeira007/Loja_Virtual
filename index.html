@@ -39,8 +39,7 @@
                     </a>
                 </div>
                 <span id="span-search">Buscar no site</span>
-                <div class="cart">
-                    <div id="signal-quantity" class="signal-quantity"></div>                    
+                <div class="cart" id="signal">  
                     <a class="btn-cart" id="btn-cart" href="#">
                         <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -58,21 +57,63 @@
             <a id="icon-close" href="#">
                 <i class="fa fa-times"></i>
             </a>
-            <section class="my-cart" id='cart'>
+            <section class="my-cart" id='cart'> <!--Container Cart-->
                 <h2 class="cart-clear">Você não tem nenhum produto no carrinho</h2>
-            </section>
-            <div id="footer-products" class="footer-products">
-                <div class="footer-products-info">
-                    <span>Total</span>
-                    <span id="quantity-total"></span>
+            </section> <!--FIM Container Cart-->
+        </aside>
+        <footer>
+            <div class="footer-form">
+                <div class="footer-form-info">
+                <h3>Promoções e Novidades</h3>
+                <span>Cadastre seu email e receba as novidades</span>
                 </div>
-                <div class="footer-products-btn">
-                    <button id="btn-enviar">Finalizar Pedido <i class="fa fa-arrow-right"></i></button>
+                <form action="https://gmail.us7.list-manage.com/subscribe/post?u=643c83f5855b06e5f57ea1413&amp;id=fb5b914c72" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <input type="text" name="FNAME" placeholder="Nome">
+                    <input type="email" name="EMAIL" placeholder="Email">
+                    <input type="submit" name="SUBSCRIBE" value="Inscreva-se">
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_643c83f5855b06e5f57ea1413_1c24964f88" tabindex="-1" value=""></div>
+                </form>
+            </div>
+            <div class="footer-links">
+                <div class="footer-attendance">
+                    <h3>Atendimento</h3>
+                    <ul class="footer-topics">
+                        <li><a href="">Fale conosco</a></li>
+                        <li><a href="">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h3>Navegação</h3>
+                    <ul class="footer-topics">
+                        <li><a href="">Avon</a></li>
+                        <li><a href="">Boticário</a></li>
+                        <li><a href="">Catálogos</a></li>
+                        <li><a href="">Natura</a></li>
+                    </ul>
+                </div>
+                <div class="footer-support">
+                    <h3>Suporte</h3>
+                    <ul class="footer-topics">
+                        <li><a href="">Política de Privacidade</a></li>
+                        <li><a href="">Ajuda</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social-media">
+                    <h3>Redes Sociais</h3>
+                    <ul class="footer-topics-social">
+                        <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                        <li><a href=""><i class="fab fa-whatsapp"></i></a></li>
+                        <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    </ul>
                 </div>
             </div>
-        </aside>
-        <footer></footer>
+            <div class="footer-info">
+               <p>&copy; 2021 Loja. Todos os direitos reservados.</p>
+            </div>
+        </footer>
     </div>
+    
+    
     <script src="script.js"></script>
 </body>
 </html>

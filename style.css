@@ -104,6 +104,14 @@ header{
     padding-left: 20px;
     position: relative;
 }
+.signal-1{
+    position: fixed;
+    right: 85px;
+    top: 7px;
+}
+.show-cart .signal-1{
+    display: none;
+}
 .signal-quantity{
     width: 10px;
     position: absolute;
@@ -375,6 +383,7 @@ header{
     box-sizing: border-box;
     border-top: 1px solid #eaeaea;
     background-color: #f80;
+    z-index: 1000;
 }
 #footer-products{
     display: none;
@@ -420,6 +429,82 @@ header{
 }
 footer{
     width: 100%;
-    height: 300px;
-    background-color: #f80;
+    height: 370px;
+    background-color: #2d323a;
+}
+.footer-form{
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    background-color: #fff;
+    padding-bottom: 40px;
+}
+.footer-form-info span{
+    font-size: 13px;
+}
+.footer-form input[type="text"], input[type="email"]{
+    padding: 10px;
+    margin-left: 5px;
+    outline: none;
+    border: 1px solid #808080;
+    width: 200px;
+}
+.footer-form input[type="text"]{
+    margin-left: 30px;
+}
+.footer-form input[type="submit"]{
+    border: none;
+    outline: none;
+    padding: 10px;
+    text-align: center;
+    margin-left: 5px;
+    cursor: pointer;
+    width: 150px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: var(--color-orange);
+    transition: color 3s;
+}
+.footer-form input[type="submit"]:hover{
+    background-color: #f70;
+}
+.footer-links{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 40px;
+}
+.footer-links h3{
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-size: 16px;
+    width: 12rem;
+}
+.footer-topics li{
+    margin-bottom: 5px;
+}
+.footer-topics li a{
+    color: #ffffff99;
+    font-size: 13px;
+}
+.footer-topics li a:hover{
+    text-decoration: underline;
+}
+.footer-social-media ul{
+    display: flex;
+    justify-content: space-between;
+    width: 7rem;
+}
+.footer-topics-social a{
+    font-size: 20px;
+    color: #ffffff99;
+}
+.footer-topics-social a:hover{
+    color:#eaeaea;
+}
+.footer-info{
+    color: #ffffff99;
+    font-size: 13px;
+    margin-left: 113px;
+    margin-top: 23px;
 }

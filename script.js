@@ -82,6 +82,7 @@ inicializarLoja()
 atualizarCarrinho = () =>{
     var containerCart = document.getElementById('cart')
     var asideCart = document.getElementById('aside-cart')
+    var signal = document.getElementsByClassName("signal")[0]
     containerCart.innerHTML = ""
     items.map((val)=>{  //map é uma função que funciona +- como uma laço
         if(val.quantity > 0){
@@ -99,9 +100,21 @@ atualizarCarrinho = () =>{
                     </div>
                     <p data-id="${val.id}"class="cart-price">R$ `+(val.price*val.quantity).toFixed(2)+`</p>   
                 </div>
+                <div id="footer-products" class="footer-products">
+                    <div class="footer-products-info">
+                        <span>Total</span>
+                        <span id="quantity-total"></span>
+                    </div>
+                    <div class="footer-products-btn">
+                        <button id="btn-enviar">Finalizar Pedido <i class="fa fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="signal-1" id="signal">  
+                    <div id="signal-quantity" class="signal-quantity"></div>
+                    
+                </div>
             `     
-            asideCart.style.height = "85vh" 
-
+            
             //Função que passa uma chave inicializando do 0 para os produtos
             let input = document.getElementsByClassName('middle-quantity') 
             idQuant = 0
@@ -109,6 +122,7 @@ atualizarCarrinho = () =>{
                 input[i].setAttribute("data-id-key", idQuant)
                 idQuant++
             }
+
             //Função para adicionar item no carrinho pelo butão de (+)
             let addItem = document.getElementsByClassName("add-item")
             for(j=0;j<addItem.length;j++){
@@ -118,6 +132,7 @@ atualizarCarrinho = () =>{
                     atualizarCarrinho()
                 })
             }
+
             //Função para remover item do carrinho pelo butão (-)
             let removeItem = document.getElementsByClassName('remove-item')
             for(i=0;i<removeItem.length;i++){
@@ -127,6 +142,7 @@ atualizarCarrinho = () =>{
                 atualizarCarrinho()
                 })
             }
+
             //Função para pegar o valor do input que a pessoa digitar
             for(k=0;k<input.length;k++){
                 input[k].addEventListener("change", function(){
@@ -136,53 +152,47 @@ atualizarCarrinho = () =>{
                     atualizarCarrinho()
                 })
             }
+
             //Função para apagar todos os items do msm ao selecionar a Lixeira
             let trash = document.getElementsByClassName('cart-trash')
             for(let i=0;i<trash.length;i++){
                 trash[i].addEventListener('click', function(){
                     let key = this.getAttribute('data-id')
-                    console.log(items.quantity)
                     items[key].quantity = 0
                     atualizarCarrinho()
                     return false
                 })
             }
-            /*incrementa quantityTotal a cada click no botão comprar, para saber quantos 
-            produtos o cliente tem no carrinho, soma todas as quantidades incrementadas pelos
-            botões ou pelo input*/
 
-            quantityTotal = 0
-            for(k=0;k<input.length;k++){
-                quantityTotal += parseInt(input[k].value)
+            //calcular a soma do preço da compra
+            var totalPrice = items.reduce(getTotalPrice, 0)
+            function getTotalPrice(totalPrice, item) {
+                return totalPrice + (item.price * item.quantity)
             }
-            priceTotal = 0
-            let priceP = document.getElementsByClassName("cart-price")
-            for(i=0;i<priceP.length;i++){
-                let priceI = (priceP[i].innerText).substr(3 , 9)
-                priceTotal += parseFloat(priceI)
-                console.log(priceTotal)
+
+            //exibir a soma do preço da compra
+            let totalQuantity = document.getElementById('quantity-total')
+            var footerProducts = document.getElementById('footer-products')
+            footerProducts.style.display = 'block'
+            totalQuantity.innerHTML = `R$ ${totalPrice.toFixed(2)}`
+
+            //calcular a quantidade de produtos no carrinho
+            var quantityTotal = items.reduce(getTotalQuantity, 0)
+            function getTotalQuantity(quantityTotal, item){
+                return quantityTotal + (item.quantity)
+            }
+
+            //exibir a quantidade total de itens no carrinho
+            if (quantityTotal != 0){
+                var signalQuantity = document.getElementById('signal-quantity')
+                signalQuantity.style.display="flex"
+                signalQuantity.innerHTML = `${quantityTotal}`
             }
         }
     })
-    //mostra a quantidade total de itens sobre o carrinho
-    if (quantityTotal != 0){
-        var signalQuantity = document.getElementById('signal-quantity')
-        signalQuantity.style.display="flex"
-        signalQuantity.innerHTML = `${quantityTotal}`
-    }
-    //mostrar a soma total da compra
-    if (priceTotal != 0){
-        let totalQuantity = document.getElementById('quantity-total')
-        var footerProducts = document.getElementById('footer-products')
-        footerProducts.style.display = 'block'
-        totalQuantity.innerHTML = `R$ ${priceTotal.toFixed(2)}`
-    }else if(quantityTotal == 0){
-        footerProducts.style.display = "none"
-    }
 }
 //FIM => ATUALIZAR CARRINHO
-    var priceTotal = 0
-    var quantityTotal = 0
+
     var links = document.getElementsByClassName('btn-buy')
     for(let i=0; i<links.length; i++){
         //evento para quando o botão de comprar for acionado
@@ -199,14 +209,17 @@ atualizarCarrinho = () =>{
    document.getElementById('btn-cart').addEventListener('click', function(){
        document.querySelector('.container').classList.toggle('show-cart')
    })
+
    //função para esconder o scroll-y da página principal
    document.getElementById('btn-cart').addEventListener('click', function(){
     document.querySelector('.every').classList.toggle('hidden-scroll')
     })
+
     //função para fechar o aside-cart
    document.getElementById('icon-close').addEventListener('click', function(){
        document.querySelector('.container').classList.toggle('show-cart')
    })
+
    //função para mostrar o scroll-y da página principal
    document.getElementById('icon-close').addEventListener('click', function(){
     document.querySelector('.every').classList.toggle('hidden-scroll')
