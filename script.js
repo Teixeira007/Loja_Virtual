@@ -24,7 +24,7 @@ const items =[
     },
     {
         id: 3,
-        name: 'KAIAk Aero masculino',
+        name: 'KAIAk Aero Masculino',
         quantity: 0,
         price: 124.91,
         img: 'imagens/kaiak.jpg'
@@ -193,9 +193,71 @@ atualizarCarrinho = () =>{
 }
 //FIM => ATUALIZAR CARRINHO
 
+
+//INÍCIO CAMPO BUSCA
+const search = document.getElementById('search-input')
+const list = document.getElementById('list-search')
+var containerProducts = document.getElementById('products');
+
+
+search.addEventListener('change', function(event){
+
+    /*filtra os valores que o usuário digitou no campo busca de acordo com
+    a lista de produtos*/
+    const productsSearch = items.filter(value => {
+        this.value = this.value.toUpperCase()
+        value.name = value.name.toUpperCase()
+            
+        return value.name.indexOf(this.value) !== -1
+            
+    })
+
+    //se a busca for realizada com sucesso
+    if (productsSearch.length >= 1){
+        let title = document.getElementById('title-products')
+        title.innerHTML = ""
+        containerProducts.innerHTML = ""
+        title.innerHTML += `
+        <div class="search-true">
+            <h3>Você busca por "${this.value}"</h3>
+            <span>Resultados encontrados (${productsSearch.length})</span>
+        </div>
+        `
+        
+    }else{
+
+        //se a busca não for realizada com sucesso
+        containerProducts.innerHTML = ""
+        let title = document.getElementById('title-products')
+        title.style.display = "none"
+        containerProducts.innerHTML += `
+            <div class="search-false">
+                <h3>Nenhum resultado para "${this.value}"</h3>
+                <span>Tente verificar a ortografia ou usar termos mais genéricos</span>
+            </div>
+        `
+    }
+
+    //mostrar os produtos encontrados se for realizada com sucesso
+    for(let products of productsSearch){
+        let title = document.getElementById('title-products')
+        title.style.display = "block"
+        containerProducts.innerHTML += `
+            <div class="card-products">
+                <div class="wraper"><img src="`+products.img+`" alt="Sabonete Mamãe e Bebe"></div>
+                <div class="card-info">
+                    <p class="name-product">`+products.name+`</p>
+                    <p class="price">R$ `+products.price+`</p>
+                    <a href="#" key="`+products.id+`" class="btn-buy">Comprar<i class="fa fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        `
+    }
+
+    //Função de adiciona ao carrinho para os produtos da busca
     var links = document.getElementsByClassName('btn-buy')
     for(let i=0; i<links.length; i++){
-        //evento para quando o botão de comprar for acionado
+    //evento para quando o botão de comprar for acionado
         links[i].addEventListener('click', function(){
             let key = this.getAttribute('key')
             items[key].quantity++ //incrementando a quantidade do item utilizando o id que está no atributo key
@@ -203,24 +265,36 @@ atualizarCarrinho = () =>{
             return false
         })
     }
+})
+//FIM CAMPO BUSCA
 
-
-    // Função para abrir o aside-cart 
-   document.getElementById('btn-cart').addEventListener('click', function(){
-       document.querySelector('.container').classList.toggle('show-cart')
-   })
-
-   //função para esconder o scroll-y da página principal
-   document.getElementById('btn-cart').addEventListener('click', function(){
-    document.querySelector('.every').classList.toggle('hidden-scroll')
+var links = document.getElementsByClassName('btn-buy')
+for(let i=0; i<links.length; i++){
+//evento para quando o botão de comprar for acionado
+    links[i].addEventListener('click', function(){
+        let key = this.getAttribute('key')
+        items[key].quantity++ //incrementando a quantidade do item utilizando o id que está no atributo key
+        atualizarCarrinho()
+        return false
     })
+}
 
-    //função para fechar o aside-cart
-   document.getElementById('icon-close').addEventListener('click', function(){
-       document.querySelector('.container').classList.toggle('show-cart')
-   })
+// Função para abrir o aside-cart 
+document.getElementById('btn-cart').addEventListener('click', function(){
+    document.querySelector('.container').classList.toggle('show-cart')
+})
 
-   //função para mostrar o scroll-y da página principal
-   document.getElementById('icon-close').addEventListener('click', function(){
+//função para esconder o scroll-y da página principal
+document.getElementById('btn-cart').addEventListener('click', function(){
     document.querySelector('.every').classList.toggle('hidden-scroll')
-    })
+})
+
+//função para fechar o aside-cart
+document.getElementById('icon-close').addEventListener('click', function(){
+    document.querySelector('.container').classList.toggle('show-cart')
+})
+
+//função para mostrar o scroll-y da página principal
+document.getElementById('icon-close').addEventListener('click', function(){
+    document.querySelector('.every').classList.toggle('hidden-scroll')
+})

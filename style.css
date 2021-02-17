@@ -150,6 +150,29 @@ header{
 .show-cart .title{
     opacity: 0.5;
 }
+.search-false{
+    color: #2d323a;
+    font-size: 1.5rem;
+}
+.search-false h3{
+    margin-top: 12px;
+    font-weight: 500;
+}
+.search-false span{
+    font-size: 13px;
+}
+.search-true{
+    color: #2d323a;
+    font-size: 1.5rem;
+}
+.search-true h3{
+    font-weight: 500;
+}
+.search-true span{
+    font-weight: normal;
+    font-size: 13px;
+    text-transform: none;
+}
 .products-natura{
     display: flex;
     flex-wrap: wrap;
