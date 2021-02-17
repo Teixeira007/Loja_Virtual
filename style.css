@@ -167,6 +167,7 @@ header{
 }
 .search-true h3{
     font-weight: 500;
+    text-transform: none;
 }
 .search-true span{
     font-weight: normal;

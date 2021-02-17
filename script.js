@@ -114,7 +114,9 @@ atualizarCarrinho = () =>{
                     
                 </div>
             `     
-            
+
+            asideCart.style.height = "85vh"
+
             //Função que passa uma chave inicializando do 0 para os produtos
             let input = document.getElementsByClassName('middle-quantity') 
             idQuant = 0
@@ -200,15 +202,15 @@ const list = document.getElementById('list-search')
 var containerProducts = document.getElementById('products');
 
 
-search.addEventListener('change', function(event){
+search.addEventListener('keyup', function(event){
 
     /*filtra os valores que o usuário digitou no campo busca de acordo com
     a lista de produtos*/
     const productsSearch = items.filter(value => {
-        this.value = this.value.toUpperCase()
+        let valueUpper = this.value.toUpperCase()
         value.name = value.name.toUpperCase()
             
-        return value.name.indexOf(this.value) !== -1
+        return value.name.indexOf(valueUpper) !== -1
             
     })
 
@@ -217,13 +219,14 @@ search.addEventListener('change', function(event){
         let title = document.getElementById('title-products')
         title.innerHTML = ""
         containerProducts.innerHTML = ""
-        title.innerHTML += `
-        <div class="search-true">
-            <h3>Você busca por "${this.value}"</h3>
-            <span>Resultados encontrados (${productsSearch.length})</span>
-        </div>
-        `
-        
+        if(this.value != ""){
+            title.innerHTML += `
+            <div class="search-true">
+                <h3>Você busca por "${this.value}"</h3>
+                <span>Resultados encontrados (${productsSearch.length})</span>
+            </div>
+            `
+        }
     }else{
 
         //se a busca não for realizada com sucesso
@@ -254,7 +257,14 @@ search.addEventListener('change', function(event){
         `
     }
 
-    //Função de adiciona ao carrinho para os produtos da busca
+    //Chamando função de adiciona ao carrinho para os produtos da busca
+    AddCart()
+
+})
+//FIM CAMPO BUSCA
+
+//INICIO ADICIONAR AO CARRINHO
+AddCart = () =>{
     var links = document.getElementsByClassName('btn-buy')
     for(let i=0; i<links.length; i++){
     //evento para quando o botão de comprar for acionado
@@ -265,19 +275,9 @@ search.addEventListener('change', function(event){
             return false
         })
     }
-})
-//FIM CAMPO BUSCA
-
-var links = document.getElementsByClassName('btn-buy')
-for(let i=0; i<links.length; i++){
-//evento para quando o botão de comprar for acionado
-    links[i].addEventListener('click', function(){
-        let key = this.getAttribute('key')
-        items[key].quantity++ //incrementando a quantidade do item utilizando o id que está no atributo key
-        atualizarCarrinho()
-        return false
-    })
 }
+//FIM ADICIONAR AO CARRINHO
+AddCart()
 
 // Função para abrir o aside-cart 
 document.getElementById('btn-cart').addEventListener('click', function(){
