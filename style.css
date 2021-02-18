@@ -141,6 +141,44 @@ header{
     color: #fff;
     background-color: var(--color-orange);
 }
+.aside-menu{
+    position: fixed;
+    left: -200px;
+    top: 3rem;
+    background-color: #fff;
+    width: 200px;
+    height: 100vh;
+    transition: all 500ms;
+    z-index: 501;
+    opacity: 1;
+}
+.show-menu .aside-menu{
+    left: 0;
+}
+.show-menu .opacity-menu{
+    background-color: rgba(0,0,0,0.7);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 3rem;
+    right: 0;
+    z-index: 500;
+    width: 100%;
+}
+.aside-menu li{
+    padding: 15px 0 0 15px;
+}
+.aside-menu li:hover{
+    border-left: 1px solid #f80
+}
+.aside-menu a{
+    color: #2d323a;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.bars{
+    display: none;
+}
 .title{
     color:var(--color-orange);
     font-size: 1.5rem;
@@ -531,4 +569,77 @@ footer{
     font-size: 13px;
     margin-left: 113px;
     margin-top: 23px;
+}
+
+/* Tablet 768px */
+@media screen and (max-width: 768px){
+    .logo{
+        margin-left: 2rem;
+    }
+    .item-menu{
+        padding: 0 10px;
+    }
+    .second-menu{
+        right: 2rem;
+    }
+    .products-natura{
+        margin: 3rem 4rem 3rem 6rem;        
+    }
+    .footer-form input[type="text"], input[type="email"]{
+        width: 130px;
+    }
+    .footer-form input[type="submit"]{
+        width: 100px;
+    }
+    .footer-links h3{
+        width: auto;
+    }
+    .footer-info{
+        margin-left: 60px;
+    }
+    .signal-quantity{
+        right: -56px;
+    }
+    .bars{
+        display: none;
+    }
+
+}
+/* Mobile L 425px */
+@media screen and (max-width: 425px){
+    .menu{
+        display: none;
+    }
+    #span-search{
+        display: none;
+    }
+    .first-menu{
+        position: relative;
+    }
+    .logo{
+        position: absolute;
+        left: 9rem;
+    }
+    .bars{
+        width: 40px;
+        height: 40px;
+        background-color: #eaeaea;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        margin-left: 20px;
+        color: var(--color-orange);
+    }
+    .bars:hover{
+        background-color: var(--color-orange);
+        color: #fff;
+    }
+    .title{
+        font-size: 16px;
+    }
+    .products-natura{
+        margin: 3rem 3rem 2rem 5rem;
+    }
+    
 }

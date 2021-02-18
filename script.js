@@ -114,9 +114,12 @@ atualizarCarrinho = () =>{
                     
                 </div>
             `     
-
-            asideCart.style.height = "85vh"
-
+            if (matchMedia("(max-width:768px)").matches){
+                asideCart.style.height = "90vh"
+            }else{
+                asideCart.style.height = "85vh"
+            }
+            
             //Função que passa uma chave inicializando do 0 para os produtos
             let input = document.getElementsByClassName('middle-quantity') 
             idQuant = 0
@@ -297,4 +300,9 @@ document.getElementById('icon-close').addEventListener('click', function(){
 //função para mostrar o scroll-y da página principal
 document.getElementById('icon-close').addEventListener('click', function(){
     document.querySelector('.every').classList.toggle('hidden-scroll')
+})
+
+//função para mostrar o aside-menu - em aparelhos max-width: 425px
+document.getElementById('bars').addEventListener('click', function(){
+    document.querySelector('.every').classList.toggle('show-menu')
 })
