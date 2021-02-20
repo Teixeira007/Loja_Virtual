@@ -231,12 +231,15 @@ header{
 .products-natura{
     display: flex;
     flex-wrap: wrap;
-    margin: 3rem 0 3rem 3rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    
 }
 .card-products{
     width: 270px;
     height: 400px;
-    margin: 0 32px 32px 0;
+    margin: 0 16px 32px 16px;
     border-radius: 5px;
     border: 1px solid  #00000040;
     transition: border 0.5s;
@@ -592,22 +595,33 @@ footer{
 .footer-mobile-social-media{
     display: none;
 }
-/* Tablet 768px */
-@media screen and (max-width: 768px){
+/* Tablet 930px */
+@media screen and (max-width: 958px){
+    .second-menu{
+        right: 2rem;
+    }
+}
+@media screen and (max-width: 903px){
+    .card-products{
+        margin: 0px 10px 32px 10px;
+    }
     .logo{
         margin-left: 2rem;
     }
     .item-menu{
         padding: 0 10px;
     }
-    .second-menu{
-        right: 2rem;
+}
+/* Tablet 855px */
+@media screen and (max-width:855px){
+    .footer-form input[type="text"], input[type="email"] {
+        width: 159px;
     }
-    .products-natura{
-        margin: 3rem 4rem 3rem 6rem;        
-    }
+}
+/* Tablet 785px */
+@media screen and (max-width: 785px){
     .footer-form input[type="text"], input[type="email"]{
-        width: 130px;
+        width: 110px;
     }
     .footer-form input[type="submit"]{
         width: 100px;
@@ -630,10 +644,29 @@ footer{
     .footer-mobile-social-media{
         display: none;
     }
+    #span-search{
+        display: none;
+    }
 
 }
-/* Mobile L 425px */
-@media screen and (max-width: 425px){
+/* Tablet 620px */
+@media screen and (max-width: 620px){
+    .footer-form input[type="text"], input[type="email"]{
+        width: 50px;
+    }
+    .item-menu{
+        padding: 0 5px;
+    }
+    .logo{
+        margin-left: 1rem;
+        margin-right: 0;
+    }
+    .second-menu{
+        right: 1rem;
+    }
+}
+/* Mobile 534px */
+@media screen and (max-width: 534px){
     .menu{
         display: none;
     }
@@ -642,10 +675,12 @@ footer{
     }
     .first-menu{
         position: relative;
+        width: 100%;
     }
     .logo{
-        position: absolute;
-        left: 9rem;
+        width: 100%;
+        text-align: center;
+        margin: 0;
     }
     .bars{
         width: 40px;
@@ -657,6 +692,8 @@ footer{
         border-radius: 50%;
         margin-left: 20px;
         color: var(--color-orange);
+        position: absolute;
+        left: 1px;
     }
     .bars:hover{
         background-color: var(--color-orange);
@@ -664,9 +701,19 @@ footer{
     }
     .title{
         font-size: 16px;
+        text-align: center;
+        padding: 3rem 0 0 0;
     }
     .products-natura{
-        margin: 3rem 3rem 2rem 5rem;
+        margin: 3rem 3rem 2rem 3rem;
+    }
+    .card-info{
+        display: grid;
+    }
+    .btn-buy{
+        margin: auto;
+        text-align: center;
+        margin-bottom: 20px;
     }
     footer{
         height: 600px;
@@ -735,4 +782,10 @@ footer{
         margin-left: 88.5px;
     }
     
+}
+/* Mobile 280px */
+@media screen and (max-width:280px){
+    .btn-buy svg{
+        display: none;
+    }
 }
