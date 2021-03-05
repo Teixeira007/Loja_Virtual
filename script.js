@@ -1,6 +1,6 @@
 
 //Criando Objetos que será os intens a venda
-const items =[
+const items = [
     {
         id: 0,
         name: 'Natura Homem',
@@ -61,15 +61,15 @@ const items =[
 //inicializando a loja INICIO => INICIALIZAR LOJA
 inicializarLoja = () => {
     var containerProducts = document.getElementById('products');
-    for(let val of items){
+    for (let val of items) {
         //Adicionando os itens no HTML
         containerProducts.innerHTML += `
             <div class="card-products">
-                <div class="wraper"><img src="`+val.img+`" alt="Sabonete Mamãe e Bebe"></div>
+                <div class="wraper"><img src="`+ val.img + `" alt="Sabonete Mamãe e Bebe"></div>
                 <div class="card-info">
-                    <p class="name-product">`+val.name+`</p>
-                    <p class="price">R$ `+val.price+`</p>
-                    <a href="#" key="`+val.id+`" class="btn-buy">Comprar<i class="fa fa-shopping-cart"></i></a>
+                    <p class="name-product">`+ val.name + `</p>
+                    <p class="price">R$ `+ val.price + `</p>
+                    <a href="#" key="`+ val.id + `" class="btn-buy">Comprar<i class="fa fa-shopping-cart"></i></a>
                 </div>
             </div>
         `
@@ -79,59 +79,61 @@ inicializarLoja = () => {
 
 inicializarLoja()
 //Adiciona os itens no carrinho - INICIO => ATUALIZAR CARRINHO
-atualizarCarrinho = () =>{
+atualizarCarrinho = () => {
     var containerCart = document.getElementById('cart')
     var asideCart = document.getElementById('aside-cart')
     var signal = document.getElementsByClassName("signal")[0]
     containerCart.innerHTML = ""
-    items.map((val)=>{  //map é uma função que funciona +- como uma laço
-        if(val.quantity > 0){
-            containerCart.innerHTML +=`
+    items.map((val) => {  //map é uma função que funciona +- como uma laço
+        if (val.quantity > 0) {
+            containerCart.innerHTML += `
                 <div id="cart-products" class="cart-products">
                     <div class="cart-wraper">
-                        <img src="`+val.img+`" alt="">
+                        <img src="`+ val.img + `" alt="">
                     </div>
-                    <p class="cart-name">`+val.name+`</p>
+                    <p class="cart-name">`+ val.name + `</p>
                     <a href="#" data-id="${val.id}" class="cart-trash"><i class="fa fa-trash"></i></a>
                     <div class="cart-quantity">
                         <input type="button"  data-id="${val.id}" value="-" class="remove-item side-quantity">
-                        <input class="middle-quantity" data-id="${val.id}" value="`+val.quantity+`" type="number" name="input-quantity">
+                        <input class="middle-quantity" data-id="${val.id}" value="` + val.quantity + `" type="number" name="input-quantity">
                         <input type="button" data-id="${val.id}" value="+" class="add-item side-quantity">
                     </div>
-                    <p data-id="${val.id}"class="cart-price">R$ `+(val.price*val.quantity).toFixed(2)+`</p>   
+                    <p data-id="${val.id}"class="cart-price">R$ ` + (val.price * val.quantity).toFixed(2) + `</p>   
                 </div>
-                <div id="footer-products" class="footer-products">
-                    <div class="footer-products-info">
-                        <span>Total</span>
-                        <span id="quantity-total"></span>
+                <form action="check-out.html" method="post">
+                    <div id="footer-products" class="footer-products">
+                        <div class="footer-products-info">
+                            <span>Total</span>
+                            <span id="quantity-total"></span>
+                        </div>
+                        <div class="footer-products-btn">
+                            <button id="btn-enviar">Finalizar Pedido <i class="fa fa-arrow-right"></i></button>
+                        </div>
                     </div>
-                    <div class="footer-products-btn">
-                        <button id="btn-enviar">Finalizar Pedido <i class="fa fa-arrow-right"></i></button>
+                    <div class="signal-1" id="signal">  
+                        <div id="signal-quantity" class="signal-quantity"></div>
                     </div>
-                </div>
-                <div class="signal-1" id="signal">  
-                    <div id="signal-quantity" class="signal-quantity"></div>
-                    
-                </div>
-            `     
-            if (matchMedia("(max-width:768px)").matches){
+                </form>
+                
+            `
+            if (matchMedia("(max-width:768px)").matches) {
                 asideCart.style.height = "90vh"
-            }else{
+            } else {
                 asideCart.style.height = "85vh"
             }
-            
+
             //Função que passa uma chave inicializando do 0 para os produtos
-            let input = document.getElementsByClassName('middle-quantity') 
+            let input = document.getElementsByClassName('middle-quantity')
             idQuant = 0
-            for(let i=0;i<input.length;i++){
+            for (let i = 0; i < input.length; i++) {
                 input[i].setAttribute("data-id-key", idQuant)
                 idQuant++
             }
 
             //Função para adicionar item no carrinho pelo butão de (+)
             let addItem = document.getElementsByClassName("add-item")
-            for(j=0;j<addItem.length;j++){
-                addItem[j].addEventListener('click', function(){
+            for (j = 0; j < addItem.length; j++) {
+                addItem[j].addEventListener('click', function () {
                     let key = this.getAttribute('data-id')
                     items[key].quantity++
                     atualizarCarrinho()
@@ -140,17 +142,17 @@ atualizarCarrinho = () =>{
 
             //Função para remover item do carrinho pelo butão (-)
             let removeItem = document.getElementsByClassName('remove-item')
-            for(i=0;i<removeItem.length;i++){
-                removeItem[i].addEventListener('click', function(){
-                let key = this.getAttribute('data-id')
-                items[key].quantity--
-                atualizarCarrinho()
+            for (i = 0; i < removeItem.length; i++) {
+                removeItem[i].addEventListener('click', function () {
+                    let key = this.getAttribute('data-id')
+                    items[key].quantity--
+                    atualizarCarrinho()
                 })
             }
 
             //Função para pegar o valor do input que a pessoa digitar
-            for(k=0;k<input.length;k++){
-                input[k].addEventListener("change", function(){
+            for (k = 0; k < input.length; k++) {
+                input[k].addEventListener("change", function () {
                     let key = this.getAttribute('data-id')
                     let idKey = this.getAttribute('data-id-key')
                     items[key].quantity = parseInt(input[idKey].value)
@@ -160,8 +162,8 @@ atualizarCarrinho = () =>{
 
             //Função para apagar todos os items do msm ao selecionar a Lixeira
             let trash = document.getElementsByClassName('cart-trash')
-            for(let i=0;i<trash.length;i++){
-                trash[i].addEventListener('click', function(){
+            for (let i = 0; i < trash.length; i++) {
+                trash[i].addEventListener('click', function () {
                     let key = this.getAttribute('data-id')
                     items[key].quantity = 0
                     atualizarCarrinho()
@@ -183,14 +185,14 @@ atualizarCarrinho = () =>{
 
             //calcular a quantidade de produtos no carrinho
             var quantityTotal = items.reduce(getTotalQuantity, 0)
-            function getTotalQuantity(quantityTotal, item){
+            function getTotalQuantity(quantityTotal, item) {
                 return quantityTotal + (item.quantity)
             }
 
             //exibir a quantidade total de itens no carrinho
-            if (quantityTotal != 0){
+            if (quantityTotal != 0) {
                 var signalQuantity = document.getElementById('signal-quantity')
-                signalQuantity.style.display="flex"
+                signalQuantity.style.display = "flex"
                 signalQuantity.innerHTML = `${quantityTotal}`
             }
         }
@@ -205,24 +207,24 @@ const list = document.getElementById('list-search')
 var containerProducts = document.getElementById('products');
 
 
-search.addEventListener('keyup', function(event){
+search.addEventListener('keyup', function (event) {
 
     /*filtra os valores que o usuário digitou no campo busca de acordo com
     a lista de produtos*/
     const productsSearch = items.filter(value => {
         let valueUpper = this.value.toUpperCase()
         value.name = value.name.toUpperCase()
-            
+
         return value.name.indexOf(valueUpper) !== -1
-            
+
     })
 
     //se a busca for realizada com sucesso
-    if (productsSearch.length >= 1){
+    if (productsSearch.length >= 1) {
         let title = document.getElementById('title-products')
         title.innerHTML = ""
         containerProducts.innerHTML = ""
-        if(this.value != ""){
+        if (this.value != "") {
             title.innerHTML += `
             <div class="search-true">
                 <h3>Você busca por "${this.value}"</h3>
@@ -230,7 +232,7 @@ search.addEventListener('keyup', function(event){
             </div>
             `
         }
-    }else{
+    } else {
 
         //se a busca não for realizada com sucesso
         containerProducts.innerHTML = ""
@@ -245,16 +247,16 @@ search.addEventListener('keyup', function(event){
     }
 
     //mostrar os produtos encontrados se for realizada com sucesso
-    for(let products of productsSearch){
+    for (let products of productsSearch) {
         let title = document.getElementById('title-products')
         title.style.display = "block"
         containerProducts.innerHTML += `
             <div class="card-products">
-                <div class="wraper"><img src="`+products.img+`" alt="Sabonete Mamãe e Bebe"></div>
+                <div class="wraper"><img src="`+ products.img + `" alt="Sabonete Mamãe e Bebe"></div>
                 <div class="card-info">
-                    <p class="name-product">`+products.name+`</p>
-                    <p class="price">R$ `+products.price+`</p>
-                    <a href="#" key="`+products.id+`" class="btn-buy">Comprar<i class="fa fa-shopping-cart"></i></a>
+                    <p class="name-product">`+ products.name + `</p>
+                    <p class="price">R$ `+ products.price + `</p>
+                    <a href="#" key="`+ products.id + `" class="btn-buy">Comprar<i class="fa fa-shopping-cart"></i></a>
                 </div>
             </div>
         `
@@ -267,11 +269,11 @@ search.addEventListener('keyup', function(event){
 //FIM CAMPO BUSCA
 
 //INICIO ADICIONAR AO CARRINHO
-AddCart = () =>{
+AddCart = () => {
     var links = document.getElementsByClassName('btn-buy')
-    for(let i=0; i<links.length; i++){
-    //evento para quando o botão de comprar for acionado
-        links[i].addEventListener('click', function(){
+    for (let i = 0; i < links.length; i++) {
+        //evento para quando o botão de comprar for acionado
+        links[i].addEventListener('click', function () {
             let key = this.getAttribute('key')
             items[key].quantity++ //incrementando a quantidade do item utilizando o id que está no atributo key
             atualizarCarrinho()
@@ -283,26 +285,26 @@ AddCart = () =>{
 AddCart()
 
 // Função para abrir o aside-cart 
-document.getElementById('btn-cart').addEventListener('click', function(){
+document.getElementById('btn-cart').addEventListener('click', function () {
     document.querySelector('.container').classList.toggle('show-cart')
 })
 
 //função para esconder o scroll-y da página principal
-document.getElementById('btn-cart').addEventListener('click', function(){
+document.getElementById('btn-cart').addEventListener('click', function () {
     document.querySelector('.every').classList.toggle('hidden-scroll')
 })
 
 //função para fechar o aside-cart
-document.getElementById('icon-close').addEventListener('click', function(){
+document.getElementById('icon-close').addEventListener('click', function () {
     document.querySelector('.container').classList.toggle('show-cart')
 })
 
 //função para mostrar o scroll-y da página principal
-document.getElementById('icon-close').addEventListener('click', function(){
+document.getElementById('icon-close').addEventListener('click', function () {
     document.querySelector('.every').classList.toggle('hidden-scroll')
 })
 
 //função para mostrar o aside-menu - em aparelhos max-width: 425px
-document.getElementById('bars').addEventListener('click', function(){
+document.getElementById('bars').addEventListener('click', function () {
     document.querySelector('.every').classList.toggle('show-menu')
 })
