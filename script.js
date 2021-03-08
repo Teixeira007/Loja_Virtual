@@ -82,7 +82,6 @@ inicializarLoja()
 atualizarCarrinho = () => {
     var containerCart = document.getElementById('cart')
     var asideCart = document.getElementById('aside-cart')
-    var signal = document.getElementsByClassName("signal")[0]
     containerCart.innerHTML = ""
     items.map((val) => {  //map é uma função que funciona +- como uma laço
         if (val.quantity > 0) {

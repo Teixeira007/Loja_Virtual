@@ -17,7 +17,87 @@
 </head>
 
 <body>
+    <div id="container" class="container">
+        <header>
+            <div class="first-menu">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="imagens/favicon-32x32.png" alt="logo">
+                    </a>
+                </div>
+                <nav class="menu">
+                    <ul>
+                        <li class="item-menu"><a href="#" class="link-menu">Início</a></li>
+                        <li onclick="teste()" class="item-menu"><a href="#" class="link-menu">Avon</a></li>
+                        <li class="item-menu"><a href="" class="link-menu">Natura</a></li>
+                        <li class="item-menu"><a href="" class="link-menu">Boticário</a></li>
+                        <li class="item-menu"><a href="" class="link-menu">Catálogos</a></li>
+                        <li class="item-menu"><a href="" class="link-menu">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="second-menu">
+                <div class="search">
+                    <input id="search-input" placeholder="Buscar" type="text">
+                    <a class="btn-search" href="#">
+                        <i id="search-icon" class="fa fa-search"></i>
+                    </a>
+                </div>
+                <span id="span-search">Buscar no site</span>
+                <div class="cart" id="signal">
+                    <a class="btn-cart" id="btn-cart" href="#">
+                        <i class="fa fa-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+            <div id="bars" class="bars">
+                <i class="fa fa-bars"></i>
+            </div>
+            <div class="opacity-menu"></div>
 
+            <aside class="aside-menu">
+                <ul>
+                    <li><i class="fa fa-home"></i><a href="#">Início</a></li>
+                    <li><img width="20" height="20" src="imagens/letter_a.ico" alt="icon da avon"><a href="#">Avon</a>
+                    </li>
+                    <li><img src="imagens/letter_n.ico" width="20" height="20" alt="icon da natura"><a
+                            href="">Natura</a></li>
+                    <li><img src="imagens/letter_b.ico" width="20" height="20" alt="icon do boticario"> <a
+                            href="">Boticário</a></li>
+                    <li><i class="fa fa-book"></i><a href="">Catálogos</a></li>
+                    <li><i class="fa fa-phone"></i><a href="">Contato</a></li>
+                </ul>
+                </nav>
+            </aside>
+        </header>
+        <section class="container-cart">
+            <div class="container-left">
+
+                <h2>Meu Carrinho</h2>
+                <div class="checkout-caption">
+                    <p>Produtos</p>
+                    <p>Nome</p>
+                    <p>Quantidade</p>
+                    <p>Preço</p>
+                    <p style="visibility: hidden;">aaa</p>
+                </div>
+                <div class="checkout-products">
+                    <div class="checkout-wraper">
+                        <img src="imagens/natura-homem.jpg" alt="">
+                    </div>
+                    <p class="checkout-name">Natura Homem</p>
+                    <div class="cart-quantity" style="width: 107px;position: static;">
+                        <input type="button" data-id="${val.id}" value="-" class="remove-item side-quantity">
+                        <input class="middle-quantity" data-id="${val.id}" value="1" type="number"
+                            name="input-quantity">
+                        <input type="button" data-id="${val.id}" value="+" class="add-item side-quantity">
+                    </div>
+                    <p data-id="${val.id}" class="checkout-price">R$ 200,00</p>
+                    <a href="#" data-id="${val.id}" class="checkout-trash"><i class="fa fa-trash"></i></a>
+                </div>
+            </div>
+            <div class="container-right"></div>
+        </section>
 </body>
 
 </html>
