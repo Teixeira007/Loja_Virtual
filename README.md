@@ -18,3 +18,4 @@ Este projeto foi desenvolvido com as seguintes Tecnologias
 
 ![App Screenshot](https://github.com/Teixeira007/Loja_Virtual/blob/main/imagens/screenshot3.png)
 
+![App Screenshot](https://github.com/Teixeira007/Loja_Virtual/blob/main/imagens/screenshot4.png)
